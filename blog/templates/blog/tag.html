@@ -1,0 +1,51 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block main %}
+<div class="gray-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="catleader row">
+                    <h1>{{ tags.name }}</h1>
+                </div>
+                {% for post in posts.object_list %}
+                <article class="excerpt row">
+                    <div class="col-4">
+                        <a href="#">
+                            <img src="{{ post.image.url }}" class="thumb" alt="img">
+                        </a>
+
+                    </div>
+                    <div class="col-8">
+                        <header>
+                            <div href="#" class="cat">{{ post.category.name }}<i></i>
+                            </div>
+                            <h5><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h5>
+                        </header>
+                        <p class="meta">
+                            <span class="time"><i class="fa fa-clock-o"></i> {{ post.created_time }}</span>
+                            <span class="views"><i class="fa fa-eye"></i> {{ post.views }}</span>
+                            <span class="comments"><i class="fa fa-commenting-o"></i> 44</span>
+                            <a class="likes float-md-right"><i class="fa fa-thumbs-o-up"></i> 赞<span>({{ post.likes }})</span></a>
+                        </p>
+                        <p class="note">{{ post.excerpt }}</p>
+                    </div>
+                </article>
+                {% endfor %}
+                <!-- 页码开始 -->
+                {% include 'blog/pagination.html' %}
+                <!-- 页码结束 -->
+            </div>
+            <div class="col-md-4 d-none d-md-block">
+                <!-- 标签云开始 -->
+                {% include 'blog/cloud-tags.html' %}
+                <!-- 标签云结束 -->
+                <!-- 文章归档开始 -->
+                {% include 'blog/archives.html' %}
+                <!-- 文章归档结束 -->
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

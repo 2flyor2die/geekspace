@@ -1,0 +1,91 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block custom_css %}
+    <link rel="stylesheet" href="{% static 'blog/css/github.css' %}">
+{% endblock %}
+{% block main %}
+    <div class="gray-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="post-wrap col-md-8">
+                    <header class="post-header">
+                        <h5 class="post-header-title">
+                            {{ post.title }}
+                        </h5>
+                        <div class="post-meta">
+                            <span class="post-meta-author"><i class="fa fa-user-o"></i> 沐疯</span>
+                            <span class="post-meta-time"><time><i
+                                    class="fa fa-clock-o"></i> {{ post.created_time }}</time></span>
+                            <span class="post-meta-views"><i class="fa fa-eye"></i> {{ post.views }}</span>
+                            <span class="post-meta-comment"><i class="fa fa-commenting-o"></i> 4</span>
+                        </div>
+                    </header>
+                    <article class="post-content">
+                        {{ post.toc|safe }}
+                        {{ post.content|safe }}
+
+                    </article>
+                    <div class="post-tags">标签：<a href="#list/2/" rel="tag">博客</a><a href="#list/2/" rel="tag">DTcms</a>
+                    </div>
+                    <div class="post-copyright">
+                        未经允许不得转载
+                        <a href="{% url 'blog:index' %}">极客空间</a> :
+                        <a href="#">{{ post.title }}</a>
+                    </div>
+                    <div class="post-actions">
+                        <a class="action-like">
+                            <i class="fa fa-thumbs-o-up"></i> 赞(<span>4</span>)
+                        </a>
+                        <!-- <a class="action-rewards"><i class="glyphicon glyphicon-yen"></i> 打赏!</a> -->
+                    </div>
+
+                    <div id="comment">
+                        <h3>评论</h3>
+                        <div id="respond">
+                            <form id="comment-form" name="comment-form"
+                                  action="{% url 'comments:add_comment' post.pk %}" method="POST">
+                                <div class="comment">
+                                    {% csrf_token %}
+                                    {{ form.name }}
+                                    {{ form.email }}
+                                    {{ form.url }}
+                                    <div class="comment-box">
+                                        {{ form.comments }}
+                                        <div class="comment-ctrl">
+                                            <button type="submit" name="comment-submit" id="comment-submit"
+                                                    tabindex="4">提交评论
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="comment-list-panel">
+                            <h3>评论列表</h3>
+                            <ul class="comment-list">
+                                {% for comment in comments %}
+                                    <li class="comment-item">
+                                        <span class="nickname">{{ comment.name }} @</span>
+                                        <time class="add-time">{{ comment.add_time }}</time>
+                                        <div class="comment-text">{{ comment.comments }}</div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4 d-none d-md-block">
+                    <!-- 标签云开始 -->
+                    {% include 'blog/cloud-tags.html' %}
+                    <!-- 标签云结束 -->
+                    <!-- 文章归档开始 -->
+                    {% include 'blog/archives.html' %}
+                    <!-- 文章归档结束 -->
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

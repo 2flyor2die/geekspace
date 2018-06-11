@@ -1,0 +1,127 @@
+{% load static %}
+{% load blog_tags %}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="{% static 'blog/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/css/main.css' %}">
+    {% block custom_css %}
+    {% endblock %}
+    <title>Hello, world!</title>
+</head>
+<body>
+<header class="header">
+    <div class="header-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <div class="wrap-logo">
+                        <a href="{% url 'blog:index' %}" class="logo"></a>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="topbar float-md-right">
+                        <a href="#"><i class="fa fa-github"></i><span>&nbsp;Github</span></a>
+                        <a href="{% url 'rss' %}"><i class="fa fa-rss"></i><span>&nbsp;RSS订阅</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-down">
+        <div class="container">
+            <div class="row">
+                <nav class="navbar-expand-lg navbar-light col-12">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu"
+                            aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="main-menu">
+                        {% get_categories as categories_list %}
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'blog:index' %}">首页</a>
+                            </li>
+                            {% for category in categories_list %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'blog:category' category.pk %}">{{ category.name }}</a>
+                            </li>
+                            {% endfor %}
+
+                        </ul>
+                        <form class="form-inline d-none d-lg-block" method="get" action="{% url 'blog:search' %}" name="search">
+                            <input class="form-control search" type="search" placeholder="Search" aria-label="Search" name="keyword">
+                            <button class="btn btn-search" type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- 文章主体开始 -->
+{% block main %}
+{% endblock %}
+<!-- 文章主体结束 -->
+<footer class="slate-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <div class="footer-wrap">
+                    <h4 class="footer-title">最新文章</h4>
+                    {% get_recent_posts as recent_post_list %}
+                    <div class="recent-post">
+                        {% for post in recent_post_list %}
+                            <div class="recent-single-post">
+                                <a href="{% url 'blog:detail' post.pk %}" class="post-title">{{ post.title }}</a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="footer-wrap">
+                    <h4 class="footer-title">友情链接</h4>
+                    <div class="footer-link">
+                        {% for link in links %}
+                            <a href="{{ link.href }}" target="_blank">{{ link.title }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="footer-wrap">
+                    <h4 class="footer-title">合作伙伴</h4>
+                    <div class="footer-link">
+                        {% for cooperator in cooperators %}
+                            <a href="{{ cooperator.href }}" target="_blank">{{ cooperator.name }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>

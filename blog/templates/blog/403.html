@@ -1,0 +1,32 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block main %}
+<div class="gray-wrap">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="wrap-error">
+                <div class="error">
+                    <div class="error-left">
+                        <p class="error-text">403</p>
+                    </div>
+                    <div class="error-right">
+                        <div class="error-head">Page not found...</div>
+                        <p class="error-text">We're sorry, but we can't find the page you were looking for. It's
+                            probably some thing we've done wrong but now we know about it we'll try to fix it. In the
+                            meantime, try one of this options:</p>
+                        <ul class="error-list">
+                            <li>
+                                <a href="#" class="link">Go back to previous page</a>
+                            </li>
+                            <li>
+                                <a href="index.html" class="link">Go to homepage</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

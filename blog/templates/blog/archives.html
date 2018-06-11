@@ -1,0 +1,10 @@
+{% load blog_tags %}
+<div class="sidebar-wrap">
+    <h4 class="sidebar-title">文章归档</h4>
+    {% archives as date_list %}
+    <ul class="post-archives">
+        {% for date in date_list %}
+        <li><i class="fa fa-th-list"></i><a href="{% url 'blog:archive' date.year date.month %}">{{ date.year }} 年 {{ date.month }} 月 </a><span>({% get_archives_count date.year date.month %})</span></li>
+        {% endfor %}
+    </ul>
+</div>

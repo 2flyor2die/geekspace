@@ -15,8 +15,9 @@ class IndexView(View):
     def get(self,request):
         links = Link.objects.all()
         cooperators = Cooperator.objects.all()
-        all_post = Post.objects.all()
+        topped_posts = Post.objects.filter(topped=True)
 
+        all_post = Post.objects.filter(topped=False)
 
         # 对文章进行分页
         try:
@@ -31,6 +32,7 @@ class IndexView(View):
             "posts":posts,
             "links":links,
             "cooperators": cooperators,
+            "topped_posts":topped_posts,
         })
 
 class TagView(View):
@@ -38,7 +40,7 @@ class TagView(View):
         links = Link.objects.all()
         cooperators = Cooperator.objects.all()
         tags = get_object_or_404(Tag,pk=pk)
-        all_post = Post.objects.filter(tags=tags)
+        all_post = Post.objects.filter(Q(tags=tags),Q(topped=False))
 
         # 对文章进行分页
         try:
@@ -63,7 +65,7 @@ class CategoryView(View):
         links = Link.objects.all()
         cooperators = Cooperator.objects.all()
         categories = get_object_or_404(Category,pk=pk)
-        all_post = Post.objects.filter(category=categories)
+        all_post = Post.objects.filter(Q(category=categories),Q(topped=False))
 
         # 对文章进行分页
         try:
@@ -88,7 +90,7 @@ class ArchiveView(View):
     def get(self,request,year,month):
         links = Link.objects.all()
         cooperators = Cooperator.objects.all()
-        all_post = Post.objects.filter(created_time__year=year,created_time__month=month)
+        all_post = Post.objects.filter(Q(created_time__year=year,created_time__month=month),Q(topped=False))
 
         # 对文章进行分页
         try:
@@ -146,7 +148,7 @@ class SearchView(View):
         if not keyword:
             error_msg = "请输入关键字!"
             return render(request,"blog/search.html",locals())
-        all_post = Post.objects.filter(Q(title__icontains=keyword)|Q(content__contains=keyword)|Q(excerpt__contains=keyword))
+        all_post = Post.objects.filter(Q(title__icontains=keyword)|Q(content__contains=keyword)|Q(excerpt__contains=keyword),Q(topped=False))
 
         # 对文章进行分页
         try:

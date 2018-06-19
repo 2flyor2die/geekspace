@@ -24,4 +24,8 @@ class LinkAdmin(admin.ModelAdmin):
 class CooperatorAdmin(admin.ModelAdmin):
     list_display = ['name','href','status']
 
+# @admin.register(Banner)
+# class BannerAdmin(admin.ModelAdmin):
+#     list_display = ['title','image','url','index','add_time']
+
 

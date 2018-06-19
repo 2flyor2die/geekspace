@@ -1,7 +1,7 @@
 from django.db import models
 import django.utils.timezone as timezone
 from django.urls import reverse
-
+from datetime import datetime
 
 # Create your models here.
 
@@ -46,7 +46,8 @@ class Post(models.Model):
     topped = models.BooleanField(verbose_name='置顶', default=False)
     created_time = models.DateTimeField(verbose_name='发布时间', default=timezone.now)  # auto_now_add=True
     category = models.ForeignKey(Category, blank=False, null=False, verbose_name='文章分类',on_delete=models.DO_NOTHING)
-    tags = models.ManyToManyField(Tag, blank=False, verbose_name='文章标签')
+    tags = models.ManyToManyField(Tag, blank=True, verbose_name='文章标签')
+
 
     def __str__(self):
         return self.title
@@ -96,3 +97,18 @@ class Cooperator(models.Model):
     class Meta:
         verbose_name = '合作伙伴'
         verbose_name_plural = verbose_name
+
+
+# class Banner(models.Model):
+#     title = models.CharField(max_length=100,verbose_name="标题")
+#     image = models.ImageField(upload_to="banner",verbose_name="轮播图")
+#     url = models.URLField(max_length=200,verbose_name="访问地址")
+#     index = models.IntegerField(default=100,verbose_name="顺序")
+#     add_time = models.DateTimeField(default=datetime.now,verbose_name="添加时间")
+#
+#     def __str__(self):
+#         return self.title
+#
+#     class Meta:
+#         verbose_name = '轮播图'
+#         verbose_name_plural = verbose_name

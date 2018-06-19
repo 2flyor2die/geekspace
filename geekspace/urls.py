@@ -26,7 +26,7 @@ urlpatterns = [
 
 
     path('admin/', admin.site.urls),
-    re_path('^blog/', include('blog.urls')),
+    re_path('', include('blog.urls')),
     re_path('^comment/', include('comments.urls')),
     re_path('latest/feed/', LatestEntriesFeed(),name='rss')
 

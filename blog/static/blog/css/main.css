@@ -148,6 +148,10 @@ a:hover, a:focus {
 
 /* 3.1. END Wrap&carousel&sub-title */
 /* 3.2. Stick(置顶) */
+.excerpt-minic h5{
+    width:100%;
+}
+
 .excerpt-minic {
     border: 1px solid #eaeaea;
     padding: 1rem;
@@ -155,7 +159,6 @@ a:hover, a:focus {
     margin-bottom: 1rem;
     border-radius: 0.2rem;
 }
-
 .excerpt-minic a {
     font-size: 1.2rem;
     color: #666;
@@ -247,8 +250,12 @@ a:hover, a:focus {
     font-size: 0.8rem;
     cursor: pointer;
 }
+.excerpt-minic .note{
+    margin-left:0.8rem;
+}
 
 .excerpt-minic .note, .excerpt .note {
+    display: block;
     font-size: 0.8rem;
     color: #666;
     word-wrap: break-word;
@@ -290,6 +297,14 @@ a:hover, a:focus {
     margin-bottom: 1rem;
     position: relative;
     font-size: 1.2rem;
+}
+.sidebar-wrap ul.notice{
+    padding-left:0;
+}
+
+.sidebar-wrap ul.notice li{
+    list-style: none;
+    line-height:2rem;
 }
 
 .sidebar-wrap .sidebar-title:after {

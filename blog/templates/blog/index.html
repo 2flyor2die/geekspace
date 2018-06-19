@@ -17,15 +17,16 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
+                {% for topped_post in topped_posts %}
                 <article class="excerpt-minic row">
-                    <h5><span class="red">【推荐】</span><a href="#">用DTcms做一个独立博客网站（响应式模板）</a>
-                    </h5>
-                    <p class="note">
-                        用DTcms做一个独立博客网站（响应式模板），采用DTcmsV4.0正式版（MSSQL）。开发环境：SQL2008R2+VS2010。DTcmsV4.0正式版功能修复和优化：1、favicon.ico图标后台上传。（解决要换图标时要连FTP或者开服务器的麻烦</p>
+                    <br>
+                    <h5><span class="red">【置顶】</span><a href="{{ topped_post.get_absolute_url }}">{{ topped_post.title }}</a>
+                    </h5><br>
+                    <p class="note">{{ topped_post.excerpt }}</p>
                 </article>
+                {% endfor %}
                 {% for post in posts.object_list %}
                 <article class="excerpt row">
-
                     <div class="col-4">
                         <a href="#">
                             <img src="{{ post.image.url }}" class="thumb" alt="img">
@@ -52,6 +53,9 @@
                 <!-- 页码结束 -->
             </div>
             <div class="col-md-4 d-none d-md-block">
+                <!-- 公告开始 -->
+                {% include 'blog/notices.html' %}
+                <!-- 公告结束 -->
                 <!-- 标签云开始 -->
                 {% include 'blog/cloud-tags.html' %}
                 <!-- 标签云结束 -->

@@ -168,10 +168,16 @@ class SearchView(View):
 
 
 def permission_denied(request):
+    links = Link.objects.all()
+    cooperators = Cooperator.objects.all()
     return render(request,'blog/403.html',locals())
 
 def page_not_found(request):
+    links = Link.objects.all()
+    cooperators = Cooperator.objects.all()
     return render(request,'blog/404.html',locals())
 
 def page_error(request):
+    links = Link.objects.all()
+    cooperators = Cooperator.objects.all()
     return render(request,'blog/500.html',locals())

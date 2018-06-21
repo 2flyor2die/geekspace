@@ -44,8 +44,8 @@
                         <div id="respond">
                             <form id="comment-form" name="comment-form"
                                   action="{% url 'comments:add_comment' post.pk %}" method="POST">
+                                {% csrf_token %}
                                 <div class="comment">
-                                    {% csrf_token %}
                                     {{ form.name }}
                                     {{ form.email }}
                                     {{ form.url }}

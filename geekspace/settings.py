@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
@@ -23,11 +22,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'z9+7nz4quy@@5ts$o)z@d39xojn3d%vb15+qd_252u27wf_c0c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = False
+# DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*','127.0.0.1', 'localhost ', '.geekspace.online']
-
+ALLOWED_HOSTS = ['*', '127.0.0.1', 'localhost ', '.geekspace.online']
 
 # Application definition
 
@@ -41,6 +39,7 @@ INSTALLED_APPS = [
     'blog',
     'comments',
     'pure_pagination',
+    # 'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -74,24 +73,32 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'geekspace.wsgi.application'
 
+# CKeditor
+# CKEDITOR_CONFIGS = {
+#     'default': {
+#         'toolbar': 'full',
+#         'height': 400,
+#         'width': 1000,
+#     },
+# }
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 import pymysql
+
 pymysql.install_as_MySQLdb()
 
 DATABASES = {
     'default': {
-        'ENGINE':'django.db.backends.mysql',
-        'NAME':'geekspace',
-        'USER':'root',
-        'PASSWORD':'root',
-        'HOST':'127.0.0.1',
-        'PORT':'3306'
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'geekspace',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': '127.0.0.1',
+        'PORT': '3306'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -111,7 +118,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
@@ -125,16 +131,17 @@ USE_L10N = True
 
 USE_TZ = False
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'static')
+    os.path.join(BASE_DIR, 'static')
 ]
 # STATIC_ROOT = os.path.join(BASE_DIR, 'all_static_files')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
 
+
+# CKEDITOR_UPLOAD_PATH = "media/upload/"

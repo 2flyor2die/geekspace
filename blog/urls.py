@@ -22,7 +22,7 @@ app_name = "blog"
 
 urlpatterns = [
 
-    re_path('index',IndexView.as_view(),name='index'),
+    re_path('^$',IndexView.as_view(),name='index'),
     re_path('post/(?P<pk>[0-9]+)/',PostView.as_view(), name='detail'),
 
     #文章归档目录页

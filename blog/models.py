@@ -2,6 +2,7 @@ from django.db import models
 import django.utils.timezone as timezone
 from django.urls import reverse
 from datetime import datetime
+# from ckeditor.fields import RichTextField
 
 # Create your models here.
 
@@ -40,6 +41,7 @@ class Post(models.Model):
     title = models.CharField(max_length=50, unique=True,verbose_name='文章')
     excerpt = models.CharField(max_length=200, blank=True,verbose_name='文章摘要')
     content = models.TextField(verbose_name='文章正文')
+    # content = RichTextField(verbose_name='文章正文')
     image = models.ImageField(upload_to="upload", max_length=100,verbose_name='文章小图')
     views = models.PositiveIntegerField(verbose_name='浏览量', default=0)
     likes = models.IntegerField(verbose_name='点赞数', default=0)

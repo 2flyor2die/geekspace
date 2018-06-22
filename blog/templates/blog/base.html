@@ -10,11 +10,11 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="{% static 'blog/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="{% static 'blog/css/main.css' %}">
     {% block custom_css %}
     {% endblock %}
-    <title>Hello, world!</title>
+    <title>GeekSpace</title>
 </head>
 <body>
 <header class="header">
@@ -28,7 +28,7 @@
                 </div>
                 <div class="col-6">
                     <div class="topbar float-md-right">
-                        <a href="#"><i class="fa fa-github"></i><span>&nbsp;Github</span></a>
+                        <a href="https://github.com/2flyor2die" target="_blank"><i class="fa fa-github"></i><span>&nbsp;Github</span></a>
                         <a href="{% url 'rss' %}"><i class="fa fa-rss"></i><span>&nbsp;RSS订阅</span></a>
                     </div>
                 </div>

@@ -6,7 +6,9 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="catleader row">
-                    <h1>{{ posts.GET.year }}/{{ posts.GET.month }}文章归档</h1>
+                    <h1>
+{#                        {{ posts.object_list.GET.year }}/{{ posts.object_list.GET.month }}#}
+                        文章归档</h1>
                 </div>
 
                 {% for post in posts.object_list %}
@@ -27,7 +29,7 @@
                             <span class="time"><i class="fa fa-clock-o"></i> {{ post.created_time }}</span>
                             <span class="views"><i class="fa fa-eye"></i> {{ post.views }}</span>
                             <span class="comments"><i class="fa fa-commenting-o"></i> 44</span>
-                            <a class="likes float-md-right"><i class="fa fa-thumbs-o-up"></i> 赞<span>({{ post.likes }})</span></a>
+                            <span class="likes float-md-right"><i class="fa fa-thumbs-o-up"></i> 赞<span>({{ post.likes }})</span></span>
                         </p>
                         <p class="note">{{ post.excerpt }}</p>
                     </div>

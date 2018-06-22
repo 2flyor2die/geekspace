@@ -2,7 +2,7 @@
 __date__ = '18-6-8 上午9:11'
 
 from django import template
-from ..models import Post,Tag,Category
+from ..models import Post,Tag,Category,Carousel
 from django.db.models.aggregates import Count
 from django.db.models import Q
 
@@ -27,3 +27,7 @@ def get_tags():
 @register.simple_tag
 def get_categories():
     return  Category.objects.all()
+
+@register.simple_tag
+def get_carousel_list():
+    return Carousel.objects.all()

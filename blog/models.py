@@ -33,6 +33,9 @@ class Tag(models.Model):
         verbose_name = '文章标签'
         verbose_name_plural = verbose_name
 
+    def get_absolute_url(self):
+        return reverse('blog:tag', kwargs={'pk': self.pk})
+
 
 
 
@@ -101,16 +104,18 @@ class Cooperator(models.Model):
         verbose_name_plural = verbose_name
 
 
-# class Banner(models.Model):
-#     title = models.CharField(max_length=100,verbose_name="标题")
-#     image = models.ImageField(upload_to="banner",verbose_name="轮播图")
-#     url = models.URLField(max_length=200,verbose_name="访问地址")
-#     index = models.IntegerField(default=100,verbose_name="顺序")
-#     add_time = models.DateTimeField(default=datetime.now,verbose_name="添加时间")
-#
-#     def __str__(self):
-#         return self.title
-#
-#     class Meta:
-#         verbose_name = '轮播图'
-#         verbose_name_plural = verbose_name
+class Carousel(models.Model):
+    index = models.IntegerField(verbose_name="编号")
+    title = models.CharField(max_length=100,blank=True,null=True,verbose_name="标题")
+    content = models.CharField(max_length=100,verbose_name="描述")
+    image = models.ImageField(upload_to="carousel",verbose_name="轮播图")
+    url = models.URLField(max_length=100,verbose_name="跳转地址")
+
+
+    def __str__(self):
+        return self.content[:25]
+
+    class Meta:
+        verbose_name = '轮播图'
+        verbose_name_plural = verbose_name
+        ordering = ['index','-id']

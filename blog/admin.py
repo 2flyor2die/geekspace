@@ -2,8 +2,9 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Category,Post,Tag,Link,Cooperator
-#
+from .models import Category,Post,Tag,Link,Cooperator,Carousel
+
+
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name']
@@ -24,8 +25,8 @@ class LinkAdmin(admin.ModelAdmin):
 class CooperatorAdmin(admin.ModelAdmin):
     list_display = ['name','href','status']
 
-# @admin.register(Banner)
-# class BannerAdmin(admin.ModelAdmin):
-#     list_display = ['title','image','url','index','add_time']
+@admin.register(Carousel)
+class BannerAdmin(admin.ModelAdmin):
+    list_display = ['title','image','url','index','content']
 
 

@@ -27,7 +27,7 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
     re_path('', include('blog.urls')),
-    re_path('', include('comments.urls')),
+    re_path('comment', include('comments.urls')),
     re_path('latest/feed/', LatestEntriesFeed(),name='rss'),
     # re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
 

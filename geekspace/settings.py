@@ -22,8 +22,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'z9+7nz4quy@@5ts$o)z@d39xojn3d%vb15+qd_252u27wf_c0c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+# DEBUG = False
 
 ALLOWED_HOSTS = ['*', '127.0.0.1', 'localhost ', '.geekspace.online']
 
